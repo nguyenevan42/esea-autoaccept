@@ -10,7 +10,6 @@ class App(tk.Frame):
         self.label1 = tk.Label()
         self.button0 = tk.Button(text="Refresh", command=self.refresh)
         self.button1 = tk.Button(text="Start", command=self.main)
-        self.button2 = tk.Button()
         self.label1.pack()
         self.button0.pack()
         self.button1.pack()
