@@ -13,11 +13,11 @@ class App:
         self.path = os.path.dirname(os.path.realpath(__file__))
 
         # Create system tray icon
-        self.icon = pystray.Icon("ESEA Autoaccept",
-                                title="ESEA Autoaccept",
-                                menu=(item("Item1", None)))
+        self.menu = item("test", lambda : self.terminate())
         self.image = Image.open(self.path + "\\icon.png")
-        self.icon.icon = self.image
+        self.icon = pystray.Icon("ESEA Autoaccept", self.image,
+                                title="ESEA Autoaccept",
+                                menu=self.menu)
         self.icon.run(self.main())
 
     def main(self):
