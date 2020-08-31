@@ -11,20 +11,12 @@ class App:
     def __init__(self, *args, **kwargs):
         super(App, self).__init__()
         self.path = os.path.dirname(os.path.realpath(__file__))
-
-        # Create system tray icon
-        self.menu = (item('name', self.action), item('name', self.action))
-        self.image = Image.open(self.path + "\\icon.png")
-        self.icon = pystray.Icon("ESEA Autoaccept", self.image,
-                                title="ESEA Autoaccept",
-                                menu=self.menu)
-        self.icon.run(self.main())
+        self.main()
 
     def action(self):
         pass
 
     def main(self):
-        self.icon.visible = True
         self.img_dir = self.path + "\\data\\" 
 
         self.rank = ["20yr.png" , "rankd.png", "rankc.png" , "rankb.png" ,
@@ -51,12 +43,22 @@ class App:
             print(self.rank[self.x], "not found.")
             pass
 
-    def run(self):
-        if __name__ == "__main__":
-            Thread(target = self.__init__).start()
-    
     def terminate(self):
         sys.exit()
 
 root = App()
-root.run()
+
+def initialize():
+        # Create system tray icon
+        menu = (item('name', root.action), item('name', root.action))
+        print("step1")
+        image = Image.open(root.path + "\\icon.png")
+        icon = pystray.Icon("ESEA Autoaccept", image,
+                                title="ESEA Autoaccept",
+                                menu=menu).run()
+        print("step2")
+        icon.visible = True
+        print("step3")
+        icon.run(root.App())
+
+initialize()
